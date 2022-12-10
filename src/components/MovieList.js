@@ -43,6 +43,12 @@ const List = styled.ul`
     flex-wrap: wrap;
     display: flex;
     grid-gap: 10px 20px;
+    overflow-y: scroll;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+    ::-webkit-scrollbar {
+        display: none;
+    }
     div{
         width: 145px;
         height: 209px;
@@ -54,7 +60,7 @@ const List = styled.ul`
         text-align: center;
         justify-content: center;
         margin-right: auto;
-        margin-left: 4px;
+        margin-left: 12px;
         img {
             margin-right: auto;
             margin-left: auto;

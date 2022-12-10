@@ -1,7 +1,9 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import SelectMovie from "./SelectMovie";
-import SelectSession from "./SelectSession"
+import SelectSession from "./SelectSession";
+import SelectSeat from "./SelectSeat";
 import Banner from "./Banner";
+// import SuccessPage from "./SuccessPage"
 
 function App() {
   return (
@@ -10,7 +12,8 @@ function App() {
       <Routes>
         <Route path="/" element={<SelectMovie/>}/>
         <Route path="/sessoes/:movieId" element={<SelectSession/>}/>
-        {/* <Route path="/assentos/:sessionId" element={<Alow/>}/> */}
+        <Route path="/assentos/:sessionId" element={<SelectSeat/>}/>
+        {/* <Route path="/sucesso" element={<SuccessPage/>}/> */}
       </Routes>
     </BrowserRouter>
   );

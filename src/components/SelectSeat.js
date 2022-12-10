@@ -1,26 +1,37 @@
 import styled from "styled-components";
-import MovieList from "./MovieList";
+import MovieSeats from "./MovieSeats";
+import SelectedSession from "./SelectedSession";
+import SeatInfo from "./SeatInfo";
+import MovieForm from "./MovieForm";
+import { useState } from "react"
 
-function SelectMovie() {
+function SelectSeat() {
+    const [selectedSeat, setSelectedSeat] = useState([])
+
     return (
         <Container>
             <h1>
-                Selecione o filme
+                Selecione o(s) assento(s)
             </h1>
-            <MovieList/>
+            <MovieSeats
+                selectedSeat={selectedSeat}
+                setSelectedSeat={setSelectedSeat}
+            />
+            <SeatInfo/>
+            <MovieForm selectedSeat={selectedSeat}/>
+            <SelectedSession/>
         </Container>
     )
 };
 
-export default SelectMovie;
+export default SelectSeat;
 
 const Container = styled.div`
     background-color: #FFFFFF;
     min-width: 375px;
-    height: 900px;
     margin-left: auto;
     margin-right: auto;
-    margin-top: 122px;
+    margin-top: 57px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -36,7 +47,5 @@ const Container = styled.div`
         font-size: 24px;
         line-height: 28px;
         color: #293845;
-        margin-right: 30px;
-        margin-bottom: 35px;
     }
 `;

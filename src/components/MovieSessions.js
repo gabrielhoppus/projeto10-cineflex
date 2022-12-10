@@ -61,6 +61,11 @@ const SessionContainer = styled.div`
     width: 375px;
     margin-left: 24px;
     overflow-y: scroll;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+    ::-webkit-scrollbar {
+        display: none;
+    }
 `;
 
 const ButtonContainer = styled.div`
