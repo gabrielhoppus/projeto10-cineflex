@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import MovieSessions from "./MovieSessions";
+import SelectedMovie from "./SelectedMovie";
 
 function SelectSession() {
     return (
@@ -8,6 +9,7 @@ function SelectSession() {
                 Selecione o horário
             </h1>
             <MovieSessions/>
+            <SelectedMovie/>
         </Container>
     )
 };
@@ -17,8 +19,10 @@ export default SelectSession;
 const Container = styled.div`
     background-color: #FFFFFF;
     min-width: 375px;
+    height: 900px;
     margin-left: auto;
     margin-right: auto;
+    margin-top: 122px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -35,5 +39,6 @@ const Container = styled.div`
         line-height: 28px;
         color: #293845;
         margin-right: 30px;
+        margin-bottom: 35px;
     }
 `;

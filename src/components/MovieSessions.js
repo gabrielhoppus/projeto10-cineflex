@@ -15,8 +15,8 @@ function MovieSessions() {
         promise.then(response => {
             setSessions(response.data.days)
         });
-        promise.catch(error => alert(error.response.data));
-    }, []);
+        promise.catch(error => alert(error.response.data.days));
+    }, [movieId]);
 
     if (sessions === undefined) {
         return <img src={loading} alt="loading-gif" />;
@@ -31,12 +31,13 @@ function MovieSessions() {
                     </Date>
                     <ButtonContainer>
                         {session.showtimes.map(time =>
-                            <SessionButton key={time.id}>
-                                {time.name}
-                            </SessionButton>
+                            <StyledLink key={time.id} to={`/assentos/${time.id}`}>
+                                <SessionButton>
+                                    {time.name}
+                                </SessionButton>
+                            </StyledLink>
                         )}
                     </ButtonContainer>
-
                 </SessionContainer>
 
             )}
@@ -48,15 +49,26 @@ function MovieSessions() {
 
 export default MovieSessions
 
+const StyledLink = styled(Link)`
+    text-decoration: none;
+
+    &:focus, &:hover, &:visited, &:link, &:active {
+        text-decoration: none;
+    }
+`;
+
 const SessionContainer = styled.div`
-    
-`
+    width: 375px;
+    margin-left: 24px;
+    overflow-y: scroll;
+`;
 
 const ButtonContainer = styled.div`
     display: flex;
-`
+    grid-gap: 0px 9px;
+`;
 
-const Date = styled.h1`
+const Date = styled.div`
     font-family: 'Roboto';
     font-style: normal;
     font-weight: 400;
@@ -65,7 +77,8 @@ const Date = styled.h1`
     display: flex;
     align-items: center;
     letter-spacing: 0.02em;
-`
+    color: #293845;
+`;
 
 const SessionButton = styled.button`
     background-color: #E8833A;
@@ -79,6 +92,12 @@ const SessionButton = styled.button`
     display: flex;
     align-items: center;
     text-align: center;
+    justify-content: center;
     letter-spacing: 0.02em;
     color: #FFFFFF;
-`
+    border: none;
+    border-radius: 3px;
+    margin-top: 22px;
+    margin-bottom: 23px;
+    a {text-decoration: none;}
+`;

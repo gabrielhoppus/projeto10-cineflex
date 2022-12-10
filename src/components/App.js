@@ -10,6 +10,7 @@ function App() {
       <Routes>
         <Route path="/" element={<SelectMovie/>}/>
         <Route path="/sessoes/:movieId" element={<SelectSession/>}/>
+        {/* <Route path="/assentos/:sessionId" element={<Alow/>}/> */}
       </Routes>
     </BrowserRouter>
   );
