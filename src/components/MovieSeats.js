@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 import axios from "axios";
 import { useState, useEffect } from "react";
 
-function MovieSeats({selectedSeat, setSelectedSeat}) {
+function MovieSeats({selectedSeat, setSelectedSeat, seatNumber, setSeatNumber}) {
     const [seats, setSeats] = useState([]);
     const [color, setColor] = useState("#C3CFD9");
     const [border, setBorder] = useState("1px solid #7B8B99")
@@ -23,11 +23,13 @@ function MovieSeats({selectedSeat, setSelectedSeat}) {
         if (seat.isAvailable === false) {
             alert("Esse assento não está disponível");
         } else if (color === "#1AAE9E" && selectedSeat.includes(seat.id)){
-            setSelectedSeat(selectedSeat.filter(clicked => clicked !== seat.id))            
+            setSelectedSeat(selectedSeat.filter(clicked => clicked !== seat.id));
+            setSeatNumber(seatNumber.filter(clicked => clicked !== seat.name));    
         }else{
             setColor("#1AAE9E");
-            setBorder("1px solid #0E7D71")
+            setBorder("1px solid #0E7D71");
             setSelectedSeat([...selectedSeat, seat.id]);
+            setSeatNumber([...seatNumber, seat.name])
         }
     };
 
@@ -35,13 +37,14 @@ function MovieSeats({selectedSeat, setSelectedSeat}) {
         <SeatContainer>
             {seats.map(seat => {
                 return seat.isAvailable === false ? (
-                    <SeatWrapper onClick={() => selectSeat(seat)} key={seat.id} background={"#FBE192"} border={"1px solid #F7C52B"}>
+                    <SeatWrapper data-test="seat" onClick={() => selectSeat(seat)} key={seat.id} background={"#FBE192"} border={"1px solid #F7C52B"}>
                         <Seat>
                             {seat.name.padStart(2, '0')}
                         </Seat>
                     </SeatWrapper>
                 ) : (
                     <SeatWrapper
+                        data-test="seat"
                         onClick={() => selectSeat(seat)}
                         key={seat.id}
                         background={selectedSeat.includes(seat.id) ? color : "#C3CFD9"}

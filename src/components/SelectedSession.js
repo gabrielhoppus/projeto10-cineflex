@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 import axios from "axios";
 import { useState, useEffect } from "react";
 
-function SelectedSession() {
+function SelectedSession({setMovieTitle, setMovieDay, setMovieDate}) {
     const [sessionInfo, setSessionInfo] = useState([]);
     const [sessionMovie, setSessionMovie] = useState([]);
     const [sessionTime, setSessionTime] = useState([]);
@@ -17,15 +17,18 @@ function SelectedSession() {
             setSessionTime(response.data);
             setSessionInfo(response.data.day);
             setSessionMovie(response.data.movie);
+            setMovieTitle(sessionMovie.title);
+            setMovieDay(sessionInfo.date);
+            setMovieDate(sessionTime.name);
         });
         promise.catch(error => alert(error.response.data))
-    }, [sessionId]);
+    }, [sessionId, sessionTime.name, sessionInfo.date, sessionMovie.title, setMovieDate, setMovieDay, setMovieTitle]);
 
     return (
-        <Footer>
-            <div>
+        <Footer data-test="footer">
+            <Wrapper>
                 <img src={sessionMovie.posterURL} alt={sessionMovie.title} />
-            </div>
+            </Wrapper>
             <span>
                 <p>
                     {sessionMovie.title}
@@ -40,6 +43,24 @@ function SelectedSession() {
 
 export default SelectedSession;
 
+const Wrapper = styled.div`
+    min-width: 64px;
+    height: 89px;
+    background: #FFFFFF;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+    border-radius: 2px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+    margin-left: 14px;
+    margin-right: 14px;
+    img{
+        width: 48px;
+        height: 72px;
+    }
+`
+
 const Footer = styled.div`
     margin-left: auto;
     margin-right: auto;
@@ -53,31 +74,6 @@ const Footer = styled.div`
     align-items: center;
     text-align: center;
     justify-content: center;
-    div{
-        width: 64px;
-        height: 89px;
-        background: #FFFFFF;
-        box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
-        border-radius: 2px;
-        display: flex;
-        align-items: center;
-        text-align: center;
-        justify-content: center;
-        margin-left: 14px;
-        img{
-            width: 48px;
-            height: 72px;
-        }
-    }
-    p{
-        width: 300px;
-        font-family: 'Roboto';
-        font-style: normal;
-        font-weight: 400;
-        font-size: 26px;
-        line-height: 30px;
-        color: #293845;
-    }
     span{
         width: 300px;
         font-family: 'Roboto';
@@ -87,6 +83,14 @@ const Footer = styled.div`
         line-height: 30px;
         color: #293845;
         text-align: left;
-        margin-left: 14px;
+        p{
+            width: 300px;
+            font-family: 'Roboto';
+            font-style: normal;
+            font-weight: 400;
+            font-size: 26px;
+            line-height: 30px;
+            color: #293845;
+        }
     }
 `;

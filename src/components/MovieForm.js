@@ -3,22 +3,23 @@ import axios from "axios";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-function MovieForm({selectedSeat}) {
+function MovieForm({ selectedSeat, seatNumber, movieTitle, movieDay, movieDate}) {
     const [name, setName] = useState("");
     const [cpf, setCPF] = useState("");
     const navigate = useNavigate()
     const seats = [...selectedSeat]
+    const seatNumbers = [...seatNumber]
 
-    function registerSeats(e){
+    function registerSeats(e) {
         const URL = "https://mock-api.driven.com.br/api/v8/cineflex/seats/book-many"
-        const data ={
+        const data = {
             ids: seats,
             name: name,
             cpf: cpf,
         };
         const promise = axios.post(URL, data)
 
-        promise.then(() => navigate("/sucesso"))
+        promise.then(() => navigate("/sucesso", {state:{name, cpf, seatNumbers, movieTitle, movieDay, movieDate}}))
         promise.catch(error => error.response.data)
 
 
@@ -31,6 +32,7 @@ function MovieForm({selectedSeat}) {
             <Label htmlFor="name">
                 Nome do Comprador:
                 <Input
+                    data-test="client-name"
                     id="name"
                     type="text"
                     placeholder="Digite seu nome..."
@@ -42,6 +44,7 @@ function MovieForm({selectedSeat}) {
             <Label htmlFor="cpf">
                 CPF do comprador:
                 <Input
+                    data-test="client-cpf"
                     id="cpf"
                     type="text"
                     placeholder="Digite seu CPF..."
@@ -50,7 +53,7 @@ function MovieForm({selectedSeat}) {
                     required
                 />
             </Label>
-            <SubmitButton>
+            <SubmitButton data-test="book-seat-btn">
                 Reservar assento(s)
             </SubmitButton>
         </Form>

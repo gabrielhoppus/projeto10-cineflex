@@ -7,6 +7,10 @@ import { useState } from "react"
 
 function SelectSeat() {
     const [selectedSeat, setSelectedSeat] = useState([])
+    const [seatNumber, setSeatNumber] = useState([])
+    const [movieTitle, setMovieTitle] = useState("");
+    const [movieDay, setMovieDay] = useState("");
+    const [movieDate, setMovieDate] = useState("")
 
     return (
         <Container>
@@ -16,10 +20,12 @@ function SelectSeat() {
             <MovieSeats
                 selectedSeat={selectedSeat}
                 setSelectedSeat={setSelectedSeat}
+                seatNumber={seatNumber}
+                setSeatNumber={setSeatNumber}
             />
             <SeatInfo/>
-            <MovieForm selectedSeat={selectedSeat}/>
-            <SelectedSession/>
+            <MovieForm selectedSeat={selectedSeat} seatNumber={seatNumber} movieTitle={movieTitle} movieDay={movieDay} movieDate={movieDate}/>
+            <SelectedSession setMovieTitle={setMovieTitle} setMovieDay={setMovieDay} setMovieDate={setMovieDate}/>
         </Container>
     )
 };

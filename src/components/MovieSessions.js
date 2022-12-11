@@ -25,14 +25,14 @@ function MovieSessions() {
     return (
         <div>
             {sessions.map(session =>
-                <SessionContainer key={session.id}>
+                <SessionContainer data-test="movie-day" key={session.id}>
                     <Date>
                         {session.weekday} - {session.date}
                     </Date>
                     <ButtonContainer>
                         {session.showtimes.map(time =>
                             <StyledLink key={time.id} to={`/assentos/${time.id}`}>
-                                <SessionButton>
+                                <SessionButton data-test="showtime">
                                     {time.name}
                                 </SessionButton>
                             </StyledLink>

@@ -25,7 +25,7 @@ function MovieList(){
         <List>
             {movies.map(movie => 
                 <Link key={movie.id} to={`/sessoes/${movie.id}`}>
-                    <div>
+                    <div data-test="movie">
                         <img src={movie.posterURL} alt={movie.title}/>
                     </div>   
                 </Link>

@@ -19,7 +19,7 @@ function SelectedMovie(){
     }, [movieId]);
 
     return(
-        <Footer>           
+        <Footer data-test="footer">           
             <div>
                 <img src={info.posterURL} alt={info.title}/>
             </div>
@@ -70,6 +70,8 @@ const Footer = styled.div`
         font-size: 26px;
         line-height: 30px;
         color: #293845;
+        text-align: left;
+        margin-left: 14px;
     }
 `;
 
