@@ -6,7 +6,7 @@ function Banner() {
             CINEFLEX
         </Header>
     )
-};
+}
 
 export default Banner;
 

@@ -19,9 +19,9 @@ function MovieForm({ selectedSeat, seatNumber, movieTitle, movieDay, movieDate})
         };
         const promise = axios.post(URL, data);
 
-        promise.then(() => 
+        promise.then(() =>
             navigate(
-                "/sucesso", 
+                "/sucesso",
                 {state:{name, cpf, seatNumbers, movieTitle, movieDay, movieDate}}
                 ));
         promise.catch(error => error.response.data);
