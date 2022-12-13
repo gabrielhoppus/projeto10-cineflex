@@ -3,14 +3,14 @@ import MovieSeats from "./MovieSeats";
 import SelectedSession from "./SelectedSession";
 import SeatInfo from "./SeatInfo";
 import MovieForm from "./MovieForm";
-import { useState } from "react"
+import { useState } from "react";
 
 function SelectSeat() {
-    const [selectedSeat, setSelectedSeat] = useState([])
-    const [seatNumber, setSeatNumber] = useState([])
+    const [selectedSeat, setSelectedSeat] = useState([]);
+    const [seatNumber, setSeatNumber] = useState([]);
     const [movieTitle, setMovieTitle] = useState("");
     const [movieDay, setMovieDay] = useState("");
-    const [movieDate, setMovieDate] = useState("")
+    const [movieDate, setMovieDate] = useState("");
 
     return (
         <Container>
@@ -24,11 +24,21 @@ function SelectSeat() {
                 setSeatNumber={setSeatNumber}
             />
             <SeatInfo/>
-            <MovieForm selectedSeat={selectedSeat} seatNumber={seatNumber} movieTitle={movieTitle} movieDay={movieDay} movieDate={movieDate}/>
-            <SelectedSession setMovieTitle={setMovieTitle} setMovieDay={setMovieDay} setMovieDate={setMovieDate}/>
+            <MovieForm
+                selectedSeat={selectedSeat}
+                seatNumber={seatNumber}
+                movieTitle={movieTitle}
+                movieDay={movieDay}
+                movieDate={movieDate}
+            />
+            <SelectedSession
+                setMovieTitle={setMovieTitle}
+                setMovieDay={setMovieDay}
+                setMovieDate={setMovieDate}
+            />
         </Container>
     )
-};
+}
 
 export default SelectSeat;
 

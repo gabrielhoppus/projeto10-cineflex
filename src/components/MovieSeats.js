@@ -6,7 +6,7 @@ import { useState, useEffect } from "react";
 function MovieSeats({selectedSeat, setSelectedSeat, seatNumber, setSeatNumber}) {
     const [seats, setSeats] = useState([]);
     const [color, setColor] = useState("#C3CFD9");
-    const [border, setBorder] = useState("1px solid #7B8B99")
+    const [border, setBorder] = useState("1px solid #7B8B99");
     const { sessionId } = useParams();
 
     useEffect(() => {
@@ -24,20 +24,26 @@ function MovieSeats({selectedSeat, setSelectedSeat, seatNumber, setSeatNumber}) 
             alert("Esse assento não está disponível");
         } else if (color === "#1AAE9E" && selectedSeat.includes(seat.id)){
             setSelectedSeat(selectedSeat.filter(clicked => clicked !== seat.id));
-            setSeatNumber(seatNumber.filter(clicked => clicked !== seat.name));    
+            setSeatNumber(seatNumber.filter(clicked => clicked !== seat.name));
         }else{
             setColor("#1AAE9E");
             setBorder("1px solid #0E7D71");
             setSelectedSeat([...selectedSeat, seat.id]);
-            setSeatNumber([...seatNumber, seat.name])
+            setSeatNumber([...seatNumber, seat.name]);
         }
-    };
+    }
 
     return (
         <SeatContainer>
             {seats.map(seat => {
                 return seat.isAvailable === false ? (
-                    <SeatWrapper data-test="seat" onClick={() => selectSeat(seat)} key={seat.id} background={"#FBE192"} border={"1px solid #F7C52B"}>
+                    <SeatWrapper
+                        data-test="seat"
+                        onClick={() => selectSeat(seat)}
+                        key={seat.id}
+                        background={"#FBE192"}
+                        border={"1px solid #F7C52B"}
+                    >
                         <Seat>
                             {seat.name.padStart(2, '0')}
                         </Seat>
@@ -58,7 +64,7 @@ function MovieSeats({selectedSeat, setSelectedSeat, seatNumber, setSeatNumber}) 
             })}
         </SeatContainer>
     );
-};
+}
 
 export default MovieSeats;
 
@@ -70,7 +76,7 @@ const SeatContainer = styled.ul`
     margin-left: auto;
     margin-right: auto;
     padding-left: 10px;
-`
+`;
 const SeatWrapper = styled.div`
     width: 26px;
     height: 26px;
@@ -83,7 +89,7 @@ const SeatWrapper = styled.div`
     text-align: center;
     justify-content: center;
     border-radius: 12px;
-`
+`;
 const Seat = styled.li`
     font-family: 'Roboto';
     font-style: normal;
@@ -92,4 +98,4 @@ const Seat = styled.li`
     line-height: 13px;
     letter-spacing: 0.04em;
     color: #000000;
-`
+`;

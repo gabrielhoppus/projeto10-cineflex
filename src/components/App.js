@@ -3,10 +3,10 @@ import SelectMovie from "./SelectMovie";
 import SelectSession from "./SelectSession";
 import SelectSeat from "./SelectSeat";
 import Banner from "./Banner";
-import SuccessPage from "./SuccessPage"
+import SuccessPage from "./SuccessPage";
 
 function App() {
-  
+
   return (
     <BrowserRouter>
       <Banner/>
@@ -18,6 +18,6 @@ function App() {
       </Routes>
     </BrowserRouter>
   );
-};
+}
 
 export default App;

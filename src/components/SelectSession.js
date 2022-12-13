@@ -12,7 +12,7 @@ function SelectSession() {
             <SelectedMovie/>
         </Container>
     )
-};
+}
 
 export default SelectSession;
 

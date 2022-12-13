@@ -1,4 +1,4 @@
-import styled from "styled-components"
+import styled from "styled-components";
 
 function Banner() {
     return (
@@ -6,9 +6,9 @@ function Banner() {
             CINEFLEX
         </Header>
     )
-}
+};
 
-export default Banner
+export default Banner;
 
 const Header = styled.header`
     position: fixed;
@@ -29,4 +29,4 @@ const Header = styled.header`
     text-align: center;
     color: #E8833A;
     justify-content: center;
-`
+`;

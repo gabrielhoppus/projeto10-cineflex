@@ -21,7 +21,7 @@ function SelectedSession({setMovieTitle, setMovieDay, setMovieDate}) {
             setMovieDay(sessionInfo.date);
             setMovieDate(sessionTime.name);
         });
-        promise.catch(error => alert(error.response.data))
+        promise.catch(error => alert(error.response.data));
     }, [sessionId, sessionTime.name, sessionInfo.date, sessionMovie.title, setMovieDate, setMovieDay, setMovieTitle]);
 
     return (
@@ -59,7 +59,7 @@ const Wrapper = styled.div`
         width: 48px;
         height: 72px;
     }
-`
+`;
 
 const Footer = styled.div`
     margin-left: auto;

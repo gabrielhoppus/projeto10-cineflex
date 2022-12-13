@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { useState, useEffect } from "react";
 import axios from "axios";
-import loading from "../assets/loading.gif"
+import loading from "../assets/loading.gif";
 import { Link, useParams } from "react-router-dom";
 
 function MovieSessions() {
@@ -10,25 +10,25 @@ function MovieSessions() {
 
     useEffect(() => {
         const URL = `https://mock-api.driven.com.br/api/v8/cineflex/movies/${movieId}/showtimes`;
-        const promise = axios.get(URL)
+        const promise = axios.get(URL);
 
         promise.then(response => {
-            setSessions(response.data.days)
+            setSessions(response.data.days);
         });
         promise.catch(error => alert(error.response.data.days));
     }, [movieId]);
 
     if (sessions === undefined) {
         return <img src={loading} alt="loading-gif" />;
-    };
+    }
 
     return (
         <div>
             {sessions.map(session =>
                 <SessionContainer data-test="movie-day" key={session.id}>
-                    <Date>
+                    <MovieDate>
                         {session.weekday} - {session.date}
-                    </Date>
+                    </MovieDate>
                     <ButtonContainer>
                         {session.showtimes.map(time =>
                             <StyledLink key={time.id} to={`/assentos/${time.id}`}>
@@ -39,13 +39,10 @@ function MovieSessions() {
                         )}
                     </ButtonContainer>
                 </SessionContainer>
-
             )}
         </div>
-
-
     )
-};
+}
 
 export default MovieSessions
 
@@ -73,7 +70,7 @@ const ButtonContainer = styled.div`
     grid-gap: 0px 9px;
 `;
 
-const Date = styled.div`
+const MovieDate = styled.div`
     font-family: 'Roboto';
     font-style: normal;
     font-weight: 400;

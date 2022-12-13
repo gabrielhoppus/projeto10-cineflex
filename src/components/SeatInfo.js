@@ -17,7 +17,7 @@ function SeatInfo() {
             </InfoContainer>
         </Container>
     )
-};
+}
 
 export default SeatInfo;
 

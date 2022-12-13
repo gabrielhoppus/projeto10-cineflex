@@ -6,25 +6,27 @@ import { useNavigate } from "react-router-dom";
 function MovieForm({ selectedSeat, seatNumber, movieTitle, movieDay, movieDate}) {
     const [name, setName] = useState("");
     const [cpf, setCPF] = useState("");
-    const navigate = useNavigate()
-    const seats = [...selectedSeat]
-    const seatNumbers = [...seatNumber]
+    const navigate = useNavigate();
+    const seats = [...selectedSeat];
+    const seatNumbers = [...seatNumber];
 
     function registerSeats(e) {
-        const URL = "https://mock-api.driven.com.br/api/v8/cineflex/seats/book-many"
+        const URL = "https://mock-api.driven.com.br/api/v8/cineflex/seats/book-many";
         const data = {
             ids: seats,
-            name: name,
-            cpf: cpf,
+            name,
+            cpf,
         };
-        const promise = axios.post(URL, data)
+        const promise = axios.post(URL, data);
 
-        promise.then(() => navigate("/sucesso", {state:{name, cpf, seatNumbers, movieTitle, movieDay, movieDate}}))
-        promise.catch(error => error.response.data)
-
+        promise.then(() => 
+            navigate(
+                "/sucesso", 
+                {state:{name, cpf, seatNumbers, movieTitle, movieDay, movieDate}}
+                ));
+        promise.catch(error => error.response.data);
 
         e.preventDefault();
-
     }
 
     return (
@@ -58,7 +60,7 @@ function MovieForm({ selectedSeat, seatNumber, movieTitle, movieDay, movieDate})
             </SubmitButton>
         </Form>
     );
-};
+}
 
 export default MovieForm;
 
@@ -115,4 +117,4 @@ const SubmitButton = styled.button`
         color: #FFFFFF;
         border-radius: 3px;
         border: none;
-`
+`;

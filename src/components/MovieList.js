@@ -1,38 +1,38 @@
 import styled from "styled-components";
 import { useState, useEffect } from "react";
 import axios from "axios";
-import loading from "../assets/loading.gif"
+import loading from "../assets/loading.gif";
 import { Link } from "react-router-dom";
 
 function MovieList(){
     const [movies, setMovies] = useState(undefined);
 
     useEffect(() => {
-        const URL = "https://mock-api.driven.com.br/api/v8/cineflex/movies"
-        const promise = axios.get(URL)
+        const URL = "https://mock-api.driven.com.br/api/v8/cineflex/movies";
+        const promise = axios.get(URL);
 
         promise.then(response => {
-            setMovies(response.data)
+            setMovies(response.data);
         });
-        promise.catch(error => alert(error.response.data))
+        promise.catch(error => alert(error.response.data));
     }, []);
 
     if(movies === undefined) {
 		return <img src={loading} alt="loading-gif"/>;
-	};
+	}
 
     return (
         <List>
-            {movies.map(movie => 
+            {movies.map(movie =>
                 <Link key={movie.id} to={`/sessoes/${movie.id}`}>
                     <div data-test="movie">
                         <img src={movie.posterURL} alt={movie.title}/>
-                    </div>   
+                    </div>
                 </Link>
                 )}
         </List>
     );
-};
+}
 
 export default MovieList;
 

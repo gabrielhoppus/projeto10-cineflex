@@ -6,20 +6,19 @@ import { useState, useEffect } from "react";
 function SelectedMovie(){
     const [info, setInfo] = useState([]);
     const { movieId } = useParams();
-    
 
     useEffect(() =>{
         const URL = `https://mock-api.driven.com.br/api/v8/cineflex/movies/${movieId}/showtimes`;
         const promise = axios.get(URL);
 
         promise.then(response => {
-            setInfo(response.data)
+            setInfo(response.data);
         });
-        promise.catch(error => alert(error.response.data))
+        promise.catch(error => alert(error.response.data));
     }, [movieId]);
 
     return(
-        <Footer data-test="footer">           
+        <Footer data-test="footer">
             <div>
                 <img src={info.posterURL} alt={info.title}/>
             </div>
@@ -29,7 +28,7 @@ function SelectedMovie(){
         </Footer>
     );
 
-};
+}
 
 export default SelectedMovie;
 

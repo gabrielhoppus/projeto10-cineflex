@@ -4,12 +4,12 @@ import { useLocation, Link } from 'react-router-dom';
 
 function SuccessPage() {
     const location = useLocation();
-    const seats = [...location.state.seatNumbers]
+    const seats = [...location.state.seatNumbers];
 
     return (
         <Container>
             <Header>Pedido feito com sucesso!</Header>
-            <div data-test="movie-info">
+            <InfoContainer data-test="movie-info">
                 <h2>Filme e Sessão</h2>
                 <p>
                     {location.state.movieTitle}
@@ -19,16 +19,16 @@ function SuccessPage() {
                     {" "}
                     {location.state.movieDate}
                 </Session>
-            </div>
-            <div data-test="seats-info">
+            </InfoContainer>
+            <InfoContainer data-test="seats-info">
                 <h2>Ingressos</h2>
                 {seats.map(seat =>
                     <div key={seat}>
                         Assento{" "}{seat}
                     </div>
                 )}
-            </div>
-            <div data-test="client-info">
+            </InfoContainer>
+            <InfoContainer data-test="client-info">
                 <h2>Comprador</h2>
                 <h3>
                     Nome: {" "}
@@ -38,13 +38,13 @@ function SuccessPage() {
                     CPF: {" "}
                     {location.state.cpf}
                 </h3>
-            </div>
+            </InfoContainer>
             <StyledLink to={"/"}>
                 <Button data-test="go-home-btn">Voltar pra Home</Button>
             </StyledLink>
         </Container>
     );
-};
+}
 
 export default SuccessPage;
 
@@ -76,11 +76,15 @@ const Button = styled.button`
     background: #E8833A;
     border-radius: 3px;
     color: #FFFFFF;
-`
+`;
 
 const Container = styled.div`
     margin-top: 100px;
-    margin-left: 29px;
+    width: 375px;
+    display: flex;
+    margin-left: auto;
+    margin-right: auto;
+    flex-direction: column;
     h2{
         margin-bottom: 10px;
         margin-top: 40px;
@@ -94,25 +98,28 @@ const Container = styled.div`
         letter-spacing: 0.04em;
         color: #293845;
     }
-    div{
-        font-family: 'Roboto';
-        font-style: normal;
-        font-weight: 400;
-        font-size: 22px;
-        line-height: 26px;
-        align-items: center;
-        letter-spacing: 0.04em;
-        color: #293845;
-        p{
-            display: flex;
-            flex-direction: column;
-        }
+`;
+
+const InfoContainer = styled.div`
+
+    margin-left: 29px;
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 22px;
+    line-height: 26px;
+    align-items: center;
+    letter-spacing: 0.04em;
+    color: #293845;
+    p{
+        display: flex;
+        flex-direction: column;
     }
 `;
 
 const Session = styled.div`
     margin-top: 4px;
-`
+`;
 
 const Header = styled.h1`
     width: 170px;
